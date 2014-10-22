@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Expose the demo scripts to tab completion on next restart
-ln -s /home/bdlss/dockerdemo /home/bdlss/bin
+ln -s ~/dockerdemo ~/bin
 
 # Want to use the split screen feature
 sudo apt-get install terminator
