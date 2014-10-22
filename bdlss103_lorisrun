@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo This script will run the Loris webserver.
+echo visit http://127.0.0.1:3000 to see it. The
+echo root is quick to appear, the sample images
+echo is not on the first render.
+read -p "Press enter to start a new Loris server."
+echo
+docker run -d -p 3000:3000 --name myloris1  pulibrary/loris
+docker ps
+echo
+
+echo Once you have confirmed everything, you can either
+echo Ctrl-C to keep it running or continue to stop and
+echo and delete it.
+echo
+read -p "Press enter to stop and delete the loris container."
+docker stop myloris1
+docker rm myloris1
