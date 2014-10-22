@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # This will install the docker server using the latest version
 # from the docker apt repository. An older version does exist
 # in the Ubuntu repos.
@@ -14,7 +14,7 @@ sudo apt-get install lxc-docker
 # Since docker is doing stuff with the OS you have to prefix
 # all commmands with sudo. However, adding a user to the
 # docker group saves typing. 
-sudo usermod -a -G docker bdlss
+sudo usermod -a -G docker demo
 
 # Check we are part of the docker group.
-id bdlss
+id demo
