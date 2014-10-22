@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+
+# This will pull the images available for each
+# of the following systems.
+
+docker pull ubuntu
+docker pull fedora
+docker pull centos
+docker pull postgres
+
+
+# It looks like docker pull behavior has changed
+# so unlike on my 14.04 desktop the above pulls
+# only did the latest version. So manually do
+# the other versions.
+
+docker pull postgres:8
+docker pull postgres:9.4
+docker pull ubuntu:12.04
+docker pull ubuntu:13.10
+docker pull ubuntu:14.10
+
+
+# Since we needed to pull for specific versions
+# it is no longer possible to use the IMAGE_ID 
+# to work out which is the latest version so 
+# this will make them appear without
+# downloading anything.
+
+docker pull ubuntu:14.04
+docker pull postgres:9.3.5
