@@ -1,0 +1,54 @@
+#!/bin/bash
+echo
+
+echo 1. This will create, configure and start three database
+echo servers for different versions of Postgresql.
+read -p "Press enter to start the long process..."
+echo
+docker run -d -p 5001:5432 --name postold postgres:8
+docker run -d -p 5002:5432 --name postnow postgres
+docker run -d -p 5003:5432 --name postnew postgres:9.4
+echo
+
+echo 2. For each, you will get a random id if all is okay
+echo and ports 5001, 5002 and 5003 will now be
+echo available to applications/clients. This is
+echo simple to check with: docker ps
+read -p "Press enter to confirm the 3 servers are running."
+echo
+docker ps
+echo
+
+echo 3. For each server you will notice the local port has
+echo been connected to the internal port. Also, notice
+echo that the names we used appear. This makes it simple
+echo do stuff with them, like: docker stop postold
+echo
+echo If this you second run NOW is the time to start
+echo pgadmin and check the servers are okay. When done,
+echo it might be exiting the application is a good idea.
+echo
+read -p "Press enter to stop all 3 servers."
+echo
+docker stop postold
+docker stop postnew postnow
+echo
+
+echo 4. Now they have stopped, lets destroy them. We
+echo can use the names we used earlier or the
+echo random id. You can shorten these IDs in the
+echo same way a git. This demo will just use
+echo the names: docker rm postold postnew postnow
+read -p "Press enter to destroy all 3 servers."
+echo
+docker rm postold postnew postnow
+echo
+
+echo "In summary, docker is very quick :-)"
+echo
+echo The demo has finished, you can run it again but
+echo prior to doing part 3 start Pgadmin to see an
+echo application configured to access the 3 servers.
+echo
+echo Martin
+echo
