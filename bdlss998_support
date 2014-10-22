@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Expose the demo scripts to tab completion on next restart
+ln -s /home/bdlss/dockerdemo /home/bdlss/bin
+
+# Want to use the split screen feature
+sudo apt-get install terminator
+
+# During first demo users can use this to connect to servers
+sudo apt-get install pgadmin3
