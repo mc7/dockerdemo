@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+docker pull pulibrary/loris
+docker pull calvinbutcher/buildout.loris
