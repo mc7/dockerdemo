@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+# This will install the docker server using the latest version
+# from the docker apt repository. An older version does exist
+# in the Ubuntu repos.
+
+sudo sh -c "echo deb https://get.docker.com/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
+sudo apt-get update
+sudo apt-get install lxc-docker
+
+# Note, the lxc-docker package will be held back when you
+# do an upgrade. You have to force it.  ie.  sudo apt-get upgrade lxc-docker
+
+
+# Since docker is doing stuff with the OS you have to prefix
+# all commmands with sudo. However, adding a user to the
+# docker group saves typing. 
+sudo usermod -a -G docker bdlss
+
+# Check we are part of the docker group.
+id bdlss
