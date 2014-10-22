@@ -15,7 +15,6 @@ scripts
 -------
 The scripts all contain a number, this give a rough indication of when to run it.
 
-991 - run once - restart - will install docker and configure username *bdlss* (who must exist)
-992 - run once - will pull a set of images (run again to pull the latest versions)
-
-101 - simple demo with pausing - starts 3 versions of postgresql, stops and deletes them
+* 991 - run once - restart - will install docker and configure username *bdlss* (who must exist)
+* 992 - run once - will pull a set of images (run again to pull the latest versions)
+* 101 - simple demo with pausing - starts 3 versions of postgresql, stops and deletes them
