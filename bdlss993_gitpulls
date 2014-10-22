@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+mkdir ~/sources
+cd ~/sources
+
+# Example that suggests using external containers for data
+git clone https://github.com/pulibrary/loris.git
+
+# Generating a simple docker file via a script.
+git clone https://source.bodleian.ox.ac.uk/gitlab/ora/moosec.git
+
+# Automated builds by Docker after git push.
+git clone https://github.com/BDLSS/buildout.loris.git
