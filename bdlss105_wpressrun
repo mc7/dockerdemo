@@ -1,0 +1,86 @@
+#!/bin/bash
+
+echo 1. This script will run a database server and
+echo contect Wordpress to it.
+read -p "Press enter to start a new DB (10 secs) and wordpress"
+echo
+docker run --name dbprod -e MYSQL_ROOT_PASSWORD=mypassword -d mysql
+
+# This image does some setup, running in non-demon
+# mode took about 6 seconds before the port was available.
+sleep 9
+echo
+docker run --name myword1 --link dbprod:mysql -d -p 80:80 wordpress
+
+
+echo
+echo 2. The site should be avilable at http://127.0.0.1 You need
+echo to complete the word press install. Edit the title
+echo of the first post and visit the home page to check it.
+echo
+echo Once done lets start a second wordpress instance
+echo on a different port but use the same DB. This might
+echo be a point Wordpress point release where the DB structure is stable
+echo but the GUI has been improved, security release.
+echo
+echo A second web browser will open
+echo and connect to http://127.0.0.1:9080 but note that
+echo the port can get hidden by the browser.
+echo
+read -p "Press enter to start the second instance and browser"
+
+docker run --name myword2 --link dbprod:mysql -d -p 9080:80 wordpress
+
+echo
+echo 3. You should still be logged in Firefox so make another
+echo save, check. Switch to the other browser and refresh
+echo the home page. The edit you made via the first container
+echo also appears in the second. Once finished close the
+echo second browser and return here.
+echo
+midori http://127.0.0.1:9080
+
+
+echo
+echo 4. This script will now stop the containers and
+echo remove the second instance showing this has
+echo occurred with: docker ps -a
+echo
+read -p "Press enter to stop the containers and see ps output"
+echo
+
+docker stop myword2 myword1 dbprod
+docker rm myword2
+docker ps -a
+
+echo
+echo 5. The website in the browsers should have broken. This
+echo pause lets you check. When ready lets
+echo restart the containers and check they are back. Use
+echo your browser or look at the output of: docker ps
+read -p "Press enter when you are ready to restart the containers."
+
+docker start dbprod
+sleep 2
+docker start myword1
+docker ps
+
+
+echo
+echo 6. This demo is mostly finished. The script will
+echo will now stop the containers and remove them. If
+echo you wish to keep them running use Ctrl+C to stop
+echo this script.
+read -p "Press enter to stop the instance and remove them."
+echo
+docker stop dbprod myword1
+docker rm myword1 dbprod
+docker ps -a
+
+
+echo
+echo The list should be empty showing we have
+echo no containers left on this host.
+echo
+echo The end.
+echo
