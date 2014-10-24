@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo This script will stop all running containers
+echo and then delete all containers.
+echo
+echo The delete cannot be undone. Use Ctrl+C if you do not want do this.
+echo
+echo This following table output from docker ps -a will
+echo show any containers if any exist. If none exist
+echo ignore the help message that appears if you continue.
+docker ps -a
+
+echo
+read -p "Press enter if you are SURE wish to delete them."
+
+echo
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+docker ps -a
