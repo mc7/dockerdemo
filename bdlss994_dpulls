@@ -2,3 +2,6 @@
 
 docker pull pulibrary/loris
 docker pull calvinbutcher/buildout.loris
+
+docker pull mysql
+docker pull wordpress
